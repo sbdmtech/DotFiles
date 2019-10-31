@@ -48,34 +48,34 @@
 " GeneralSettings
 "{
     set nocompatible						" unset vim compatible mode	
-    set secure								" disable unsafe commands in local .vimrc	
+    set secure                              " disable unsafe commands in local .vimrc	
 
     "file related settings
-    "filetype off 							" disable file type detection for keeps the flags for plugins
-    filetype on              				" filetype detection on
+    "filetype off                           " disable file type detection for keeps the flags for plugins
+    filetype on                             " filetype detection on
     filetype plugin on		   				" filetype plugin on 
     filetype indent on 						" filetype indent on 
     syntax on
-    set autochdir							" change directory to where current file lies
-    set noswapfile       		            " reset swap file this will delete the swap file for current buffer
-    set autoread							" autodectect chages of files outside of vim
-    set autoindent						    " auto indent on
-    set smartindent							" set smart indentation on
-    set number nu							" set line numbers
-    set rnu									" set relative number
-    set ignorecase							" set ignore case
+    set autochdir                           " change directory to where current file lies
+    set noswapfile                          " reset swap file this will delete the swap file for current buffer
+    set autoread                            " autodectect chages of files outside of vim
+    set autoindent                          " auto indent on
+    set smartindent                         " set smart indentation on
+    set number nu                           " set line numbers
+    set rnu                                 " set relative number
+    set ignorecase                          " set ignore case
     set tabstop=4 shiftwidth=4 expandtab 
     " "Enabling this will make the tab key (in insert mode) insert spaces or tabs
     " "to go to the next indent of the next tabstop
     " "when the cursor is at the beginning of a line (i.e. the only preceding characters are whitespace).
     set smarttab 
-    set textwidth=79						" set maximum text width can insert
-    set background=dark						" set background dark
-    set mousehide 							" set mouse hide when typing 
-    set noerrorbells						" disable error bell noise
-    set vb t_vb=							" disable beep and flash 
-    " set foldenable						" enable foldability 
-    " set foldmethod=syntax					" foldmethod set to syntax
+    set textwidth=79                        " set maximum text width can insert
+    set background=dark                     " set background dark
+    set mousehide                           " set mouse hide when typing 
+    set noerrorbells                        " disable error bell noise
+    set vb t_vb=                            " disable beep and flash 
+    " set foldenable                        " enable foldability 
+    " set foldmethod=syntax                 " foldmethod set to syntax
     "
     "set nobackup
     "set nowritebackup
