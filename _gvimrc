@@ -760,6 +760,8 @@
     " http://vimdoc.sourceforge.net/
     " http://learnvimscriptthehardway.stevelosh.com/
     " Plugin 'jistr/vim-nerdtree-tabs'
+    "
+    "https://crudfest.wordpress.com/2018/09/08/the-journey-begins/
 "}
 
 "https://github.com/vim/vim-win32-installer/releases
