@@ -47,14 +47,14 @@
 
 " GeneralSettings
 "{
-    set nocompatible						" unset vim compatible mode	
+    set nocompatible                        " unset vim compatible mode	
     set secure                              " disable unsafe commands in local .vimrc	
 
     "file related settings
     "filetype off                           " disable file type detection for keeps the flags for plugins
     filetype on                             " filetype detection on
-    filetype plugin on		   				" filetype plugin on 
-    filetype indent on 						" filetype indent on 
+    filetype plugin on                      " filetype plugin on 
+    filetype indent on                      " filetype indent on 
     syntax on
     set autochdir                           " change directory to where current file lies
     set noswapfile                          " reset swap file this will delete the swap file for current buffer
