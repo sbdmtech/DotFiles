@@ -101,11 +101,11 @@
 "{
     set guioptions=c                       " use console dialogs
     set guioptions+=e                      " use gui tabs
-    set guioptions+=m                      " menubar is present
     set guioptions+=g                      " greyout inactive menuitems
+    set guioptions-=m                      " hide menubar
+    set guioptions-=T                      " hide toolbar
     set guioptions+=r                      " righthand scrollbar is always present
     set guioptions+=L                      " for vsplits lefthand scrollbar is present
-    set guioptions-=T                      " hide toolbar
 
     " "font settings
     " if has('x11')
@@ -668,19 +668,12 @@
     "TODO: config
 "}
 
-
-""<< Plugin:CTRLP Settings
-"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe                "exclude the .swp, .zip .exe files 
-"
 ""<< Plugin:EasyGrep Settings >>
 "let g:EasyGrepWindowPosition = "botright"
 "
 ""<< Plugin:GoldenView.vim >>
 ""let g:goldenview__enable_default_mapping = 1              " diable default mappings of GolcenView
 ""let g:goldenview__enable_at_startup =0                    " remove goldenview from startup
-""<< Plugin:Fugitive >>
-"
-""<< Plugin:MiniBufExpl >>
 ""
 ""<< Plugin:Silver Searcher
 "if executable('ag')
