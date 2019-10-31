@@ -1,7 +1,7 @@
 
 "=============================================================================================="
-"						VIM RUN COM  Configuration File
-"						Author - Sasike Bandara Dissanayake
+"                       VIM RUN COM  Configuration File
+"                       Author - Sasike Bandara Dissanayake
 "=============================================================================================="
 "
 " Plug
@@ -11,7 +11,7 @@
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
-    "Plug 'valloric/youcompleteme'       "code completion
+    "Plug 'valloric/youcompleteme'          "code completion
     Plug 'vim-scripts/mru.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'simeji/winresizer'
@@ -21,7 +21,7 @@
     Plug 'mhinz/vim-signify'
 
     "display number of search matches & index of current match
-    Plug 'google/vim-searchindex'				
+    Plug 'google/vim-searchindex'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-repeat'
@@ -47,8 +47,8 @@
 
 " GeneralSettings
 "{
-    set nocompatible                        " unset vim compatible mode	
-    set secure                              " disable unsafe commands in local .vimrc	
+    set nocompatible                        " unset vim compatible mode
+    set secure                              " disable unsafe commands in local .vimrc
 
     "file related settings
     "filetype off                           " disable file type detection for keeps the flags for plugins
@@ -83,7 +83,7 @@
 
     ">>change map leader
     let mapleader =","
-    "inoremap <CR><CR> <ESC> 				"Enter instead of ESC
+    "inoremap <CR><CR> <ESC>                " enter instead of ESC
     "source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
@@ -109,15 +109,15 @@
 
     " "font settings
     " if has('x11')
-     " set guifont=inconsolata-g\ 9  	    " font for linux
+     " set guifont=inconsolata-g\ 9        " font for linux
     " elseif has('gui_win32')
-     " set guifont=Ms\ Gothic:h10			" font for Windows 
+     " set guifont=Ms\ Gothic:h10          " font for Windows 
     " endif
 
     set encoding=utf-8
     set guifont=MS_Gothic:h11:cSHIFTJIS
-    " set langmenu=en_US.UTF-8   		    " sets the language of the menu (gvim)
-    " set encoding=cp1250					" this recognize the ALT+J as e instead of ĂŁE
+    " set langmenu=en_US.UTF-8              " sets the language of the menu (gvim)
+    " set encoding=cp1250                   " this recognize the ALT+J as e instead of ĂŁE
 
 "}
 
@@ -164,8 +164,8 @@
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 
 
-"myMappings
-" {
+" myMappings
+"{
     " source _gvimrc
     nnoremap <Leader>ss :so $MYGVIMRC<CR>
 
@@ -211,7 +211,7 @@
 ""oldsettings
 ""<< Current Function Where Cursor Lies >>
 """Following function displays the current function where cursor lies
-"nmap @@ :call CurrentFunc()<CR> 	
+"nmap @@ :call CurrentFunc()<CR> 
 "" side effect: register k and mark k will be changed)
 ""_____________________________________________________________________________________
 "func! CurrentFunc()
@@ -242,13 +242,13 @@
 ""search word under cursor in .prc files
 "map <F6> :execute "vimgrep /" . expand("<cword>") . "/j **/*.prc" <Bar> cw<CR>
 "
-""map <F5> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR>	"external grep
+""map <F5> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR> "external grep
 "
 "">> Search inside current funtion
 ""<< Plugin :scopesearch.vim >>
-""<leader><[[> 							"search inside of the current function
-""<leader><[{						    "search inside of current block
-""<leader><\/>							"selected text, or whatever text you enter, but only within the current function.
+""<leader><[[>                          "search inside of the current function
+""<leader><[{                           "search inside of current block
+""<leader><\/>                          "selected text, or whatever text you enter, but only within the current function.
 "
 "
 ""<< Pugin:QFEnter Settgings >>
@@ -279,7 +279,7 @@
 "">>Hide Menu Bar and Tool Bar
 ":set guioptions-=m  "remove menu bar
 ":set guioptions-=T  "remove toolbar
-""set scrollbind!						    "set scroll bars for windows
+""set scrollbind!                       "set scroll bars for windows
 ""
 ""window resize mappings
 ""map <F9> :set lines+=5<CR>
@@ -305,7 +305,7 @@
     let g:NERDTreeIgnore        = ['\.o$', '\.a$', '\.so$', '\.so.*$', '\.dpkg$', '\.rpm$', '\.obj$', '\.exe$', '\.d$','\.swp$', '\.git$', '\~$']
 
     " "auto open NERDTre with vim startup
-    " autocmd vimenter * NERDTree		
+    " autocmd vimenter * NERDTree
     "let g:NERDTreeWinSize=20
     nmap <F7> :NERDTree<CR>
     " close vim if only NERDtree window is left
@@ -356,12 +356,12 @@
 
 " Plugin    :   'vim-scripts/mru.vim'
 "{
-    let MRU_Window_Height =8                    " set height 
-    "let MRU_Max_Entries = 1000 				" inclrese the number of files 
-    "let MRU_Include_Files = '\.c$\|\.h$' 	    " Include specific files in MRU 
-    "let MRU_Auto_Close = 0 				    " disable autoclose of MRU window
-    "let MRU_Max_Menu_Entries = 20				" control No of files in MRU   
-    "let MRU_Exclude_Files = '^c:\\temp\\.*'   " exclude files from MRU
+    let MRU_Window_Height =8                        " set height 
+    "let MRU_Max_Entries = 1000                     " inclrese the number of files 
+    "let MRU_Include_Files = '\.c$\|\.h$'           " Include specific files in MRU 
+    "let MRU_Auto_Close = 0                         " disable autoclose of MRU window
+    "let MRU_Max_Menu_Entries = 20                  " control No of files in MRU   
+    "let MRU_Exclude_Files = '^c:\\temp\\.*'        " exclude files from MRU
 
     " "mapping
     nnoremap <silent> mr   :MRU<CR>
@@ -373,7 +373,7 @@
     " "Automatically displays all buffers when there's only one tab open.
     let g:airline#extensions#tabline#enabled = 1  
     "show just the file name
-    let g:airline#extensions#tabline#fnamemode = ':t'	
+    let g:airline#extensions#tabline#fnamemode = ':t'
     " let g:airline#extensions#tabline#buffer_idx_mode = 1
 
     " "airline synstasic intergration 
@@ -442,10 +442,10 @@
 
 " Plug 'tpope/vim-fugitive'
 "{  // git wrapper so awesome,it should be illegal
-    " :Gwrite	Stage the current file to the index
-    " :Gread	Revert current file to last checked in version
-    " :Gremove	Delete the current file and the corresponding Vim buffer
-    " :Gmove	Rename the current file and the corresponding Vim buffer
+    " :Gwrite   -> Stage the current file to the index
+    " :Gread    -> Revert current file to last checked in version
+    " :Gremove  -> Delete the current file and the corresponding Vim buffer
+    " :Gmove    -> Rename the current file and the corresponding Vim buffer
     " :Gstatus
     " :Gcommit 
     " :Gmerge
@@ -453,13 +453,13 @@
     " :Gfetch
     " :Gpull
     " :Gblame
-    " :Ggrep -> search work tree
-    " :Gread -> variant of git checkout --filename
-    " :Gclog -> 
-    " :Gllog -> load all prvious commits into quickfix or location list
-    " :Gbrowse -> open current file on the web
+    " :Ggrep    -> search work tree
+    " :Gread    -> variant of git checkout --filename
+    " :Gclog    -> 
+    " :Gllog    -> load all prvious commits into quickfix or location list
+    " :Gbrowse  -> open current file on the web
                 "#$:) this should be absolutely illeagal :) :)
-    " :Git -> for running any arbitary git command
+    " :Git      -> for running any arbitary git command
 "}
 
 
@@ -670,14 +670,14 @@
 
 
 ""<< Plugin:CTRLP Settings
-"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe	"exclude the .swp, .zip .exe files 
+"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe                "exclude the .swp, .zip .exe files 
 "
 ""<< Plugin:EasyGrep Settings >>
 "let g:EasyGrepWindowPosition = "botright"
 "
 ""<< Plugin:GoldenView.vim >>
-""let g:goldenview__enable_default_mapping = 1 				" diable default mappings of GolcenView
-""let g:goldenview__enable_at_startup =0						" remove goldenview from startup
+""let g:goldenview__enable_default_mapping = 1              " diable default mappings of GolcenView
+""let g:goldenview__enable_at_startup =0                    " remove goldenview from startup
 ""<< Plugin:Fugitive >>
 "
 ""<< Plugin:MiniBufExpl >>
@@ -693,11 +693,11 @@
 "  " ag is fast enough that CtrlP doesn't need to cache
 "  let g:ctrlp_use_caching = 0
 "endif
-"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>	" bind  K to grep Word under cursor
+"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>              " bind  K to grep Word under cursor
 "
 ""<< Plugin:Yet To Discover" >>
 ""<<  Code Navigation Related Mappings >>
-"noremap % v%												 "show macthing braces
+"noremap % v%                                               "show macthing braces
 "
 ""<<Plugin :NeoCompleteMe >>
 "
@@ -706,7 +706,7 @@
 "
 ""<< Plugin:Vim-Thematic >>
 ""https://github.com/reedes/vim-thematic
-""let g:thematic#theme_name = 'pencil_dark'					"Set an intial theme
+""let g:thematic#theme_name = 'pencil_dark'                 "Set an intial theme
 "
 ""let g:thematic#themes = {
 ""\ 'bubblegum'  : { 'typeface': 'Menlo',
