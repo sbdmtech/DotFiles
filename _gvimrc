@@ -84,7 +84,6 @@
     ">>change map leader
     let mapleader =","
     "inoremap <CR><CR> <ESC>                " enter instead of ESC
-    "source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
 
@@ -208,97 +207,6 @@
 
 "}
 "
-""oldsettings
-""<< Current Function Where Cursor Lies >>
-"""Following function displays the current function where cursor lies
-"nmap @@ :call CurrentFunc()<CR> 
-"" side effect: register k and mark k will be changed)
-""_____________________________________________________________________________________
-"func! CurrentFunc()
-"  exec "normal mk"
-"  " c-type code have remarkable definitions from other OO code.
-"  let l:extension = expand("%:e")
-"  if l:extension == "c"
-"    exec "normal ][%b%b"
-"  else
-"    exec "?private\\|public\\|protected\\|procedure\\|function\\s\\+\.*("
-"  endif
-"  "TODO: maybe you need to open your closed fold at first
-"  exec "normal v$\"ky`k"
-"  exec "echo @k"
-"endfunc " CurrentFunc
-""______________________________________________________________________________________
-"
-""<< Searching Key Mappings >>
-""search word under cursor in all files
-"map <F3> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-"
-""search word under cursor in .c files
-"map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **/*.c" <Bar> cw<CR>
-"
-""search word under cursor in .h files
-"map <F5> :execute "vimgrep /" . expand("<cword>") . "/j **/*.h" <Bar> cw<CR>
-"
-""search word under cursor in .prc files
-"map <F6> :execute "vimgrep /" . expand("<cword>") . "/j **/*.prc" <Bar> cw<CR>
-"
-""map <F5> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR> "external grep
-"
-"">> Search inside current funtion
-""<< Plugin :scopesearch.vim >>
-""<leader><[[>                          "search inside of the current function
-""<leader><[{                           "search inside of current block
-""<leader><\/>                          "selected text, or whatever text you enter, but only within the current function.
-"
-"
-""<< Pugin:QFEnter Settgings >>
-""let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
-""let g:qfenter_vopen_map = ['<Leader><CR>']
-""let g:qfenter_hopen_map = ['<Leader><Space>']
-"
-""<< Editing Related Mappings & Settings >>
-""<< Mappings under UTF-8 encoding ">>
-"nnoremap <A-j> :m .+1<CR>==
-"nnoremap <A-k> :m .-2<CR>==
-"inoremap <A-j> <Esc>:m .+1<CR>==gi
-"inoremap <A-k> <Esc>:m .-2<CR>==gi
-"vnoremap <A-j> :m '>+1<CR>gv=gv
-"
-""nnoremap <ê> :m .+1<CR>==
-""nnoremap <ë> :m .-2<CR>==
-""inoremap <ê> <Esc>:m .+1<CR>==gi
-""inoremap <ë> <Esc>:m .-2<CR>==gi
-""vnoremap <ê> :m '>+1<CR>gv=gv
-""vnoremap <ë> :m '<-2<CR>gv=gv
-"
-""copy to clip board mappings
-"map <C-c> "+y<CR>
-"
-
-"
-"">>Hide Menu Bar and Tool Bar
-":set guioptions-=m  "remove menu bar
-":set guioptions-=T  "remove toolbar
-""set scrollbind!                       "set scroll bars for windows
-""
-""window resize mappings
-""map <F9> :set lines+=5<CR>
-"":map <F10> :set columns+=10<CR>
-"
-""taglist settings
-""let Tlist_Use_Right_Window   = 1
-"""nmap <F8> :TlistOpen<CR>
-"
-""<< Quick fix settings >>
-""let g:jah_Quickfix_Win_Height = 4 " setting qfix window height
-""quick fix item open in seperate tab and force to open if item is available in currently open tab
-"":set switchbuf+=usetab,newtab
-"":set switchbuf+=newtab
-""To makesure quickfix window always occupy the full width
-"
-""<< Plugin:tagbar settings" >>
-"nmap <F8> :TagbarToggle<CR>
-"
 
 " Plugin    : 'scrooloose/nerdtree'
 "{
@@ -326,13 +234,13 @@
 " Plugin    : 'valloric/youcompleteme'       "code completion
 "{
     "TODO: configure
-    "https://github.com/ycm-core/YouCompleteMe#mac-os-x-super-quick-installation
+    "https://github.com/ycm-core/YouCompleteMe
 
     " "autocomplete goes away when done with it
-    "let g:ycm_autoclose_preview_window_after_completion=1
+    " let g:ycm_autoclose_preview_window_after_completion=1
 
     " "mapping for go to defenition
-    "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
     "  One issue with the goto definition above is that VIM, by default, doesn’t know
     " anything about virtualenv, 
@@ -462,7 +370,6 @@
     " :Git      -> for running any arbitary git command
 "}
 
-
 " Plugin    : 'scrooloose/nerdcommenter'
 "{
      " Add spaces after comment delimiters by default
@@ -574,8 +481,8 @@
     nnoremap <leader>vd :v/<C-r><C-w>/d
     "
     " tab untab visual selected box
-    vmap <Tab> >gv
-    vmap <S-Tab> <gv
+    " vmap <Tab> >gv
+    " vmap <S-Tab> <gv
     ":nnoremap <F5> :match StatusLineTerm /<C-R><C-W>/<CR>
 "}
 
@@ -668,6 +575,109 @@
     "TODO: config
 "}
 
+
+" references
+"{
+    " https://realpython.com/vim-and-python-a-match-made-in-heaven/
+    " #ditch the mouse
+    " http://vimcasts.org/
+    " https://www.openvim.com/
+    " http://vimdoc.sourceforge.net/
+    " http://learnvimscriptthehardway.stevelosh.com/
+    " Plugin 'jistr/vim-nerdtree-tabs'
+    " https://github.com/vim/vim-win32-installer/releases
+"}
+
+""oldsettings
+""<< Current Function Where Cursor Lies >>
+"""Following function displays the current function where cursor lies
+"nmap @@ :call CurrentFunc()<CR> 
+"" side effect: register k and mark k will be changed)
+""_____________________________________________________________________________________
+"func! CurrentFunc()
+"  exec "normal mk"
+"  " c-type code have remarkable definitions from other OO code.
+"  let l:extension = expand("%:e")
+"  if l:extension == "c"
+"    exec "normal ][%b%b"
+"  else
+"    exec "?private\\|public\\|protected\\|procedure\\|function\\s\\+\.*("
+"  endif
+"  "TODO: maybe you need to open your closed fold at first
+"  exec "normal v$\"ky`k"
+"  exec "echo @k"
+"endfunc " CurrentFunc
+""______________________________________________________________________________________
+"
+""<< Searching Key Mappings >>
+""search word under cursor in all files
+"map <F3> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+"
+""search word under cursor in .c files
+"map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **/*.c" <Bar> cw<CR>
+"
+""search word under cursor in .h files
+"map <F5> :execute "vimgrep /" . expand("<cword>") . "/j **/*.h" <Bar> cw<CR>
+"
+""search word under cursor in .prc files
+"map <F6> :execute "vimgrep /" . expand("<cword>") . "/j **/*.prc" <Bar> cw<CR>
+"
+""map <F5> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR> "external grep
+"
+"">> Search inside current funtion
+""<< Plugin :scopesearch.vim >>
+""<leader><[[>                          "search inside of the current function
+""<leader><[{                           "search inside of current block
+""<leader><\/>                          "selected text, or whatever text you enter, but only within the current function.
+"
+"
+""<< Pugin:QFEnter Settgings >>
+""let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+""let g:qfenter_vopen_map = ['<Leader><CR>']
+""let g:qfenter_hopen_map = ['<Leader><Space>']
+"
+""<< Editing Related Mappings & Settings >>
+""<< Mappings under UTF-8 encoding ">>
+"nnoremap <A-j> :m .+1<CR>==
+"nnoremap <A-k> :m .-2<CR>==
+"inoremap <A-j> <Esc>:m .+1<CR>==gi
+"inoremap <A-k> <Esc>:m .-2<CR>==gi
+"vnoremap <A-j> :m '>+1<CR>gv=gv
+"
+""nnoremap <ê> :m .+1<CR>==
+""nnoremap <ë> :m .-2<CR>==
+""inoremap <ê> <Esc>:m .+1<CR>==gi
+""inoremap <ë> <Esc>:m .-2<CR>==gi
+""vnoremap <ê> :m '>+1<CR>gv=gv
+""vnoremap <ë> :m '<-2<CR>gv=gv
+"
+""copy to clip board mappings
+"map <C-c> "+y<CR>
+
+"
+"">>Hide Menu Bar and Tool Bar
+":set guioptions-=m  "remove menu bar
+":set guioptions-=T  "remove toolbar
+""set scrollbind!                       "set scroll bars for windows
+""
+""window resize mappings
+""map <F9> :set lines+=5<CR>
+"":map <F10> :set columns+=10<CR>
+"
+""taglist settings
+""let Tlist_Use_Right_Window   = 1
+"""nmap <F8> :TlistOpen<CR>
+"
+""<< Quick fix settings >>
+""let g:jah_Quickfix_Win_Height = 4 " setting qfix window height
+""quick fix item open in seperate tab and force to open if item is available in currently open tab
+"":set switchbuf+=usetab,newtab
+"":set switchbuf+=newtab
+""To makesure quickfix window always occupy the full width
+"
+""<< Plugin:tagbar settings" >>
+"nmap <F8> :TagbarToggle<CR>
+"
 ""<< Plugin:EasyGrep Settings >>
 "let g:EasyGrepWindowPosition = "botright"
 "
@@ -751,17 +761,4 @@
 ""<< Excel>>
 ""let g:zipPlugin_ext = '*.zip,*.jar,*.xpi,*.ja,*.war,*.ear,*.celzip,*.oxt,*.kmz,*.wsz,*.xap,*.docx,*.docm,*.dotx,*.dotm,*.potx,*.potm,*.ppsx,*.ppsm,*.pptx,*.pptm,*.ppam,*.sldx,*.thmx,*.crtx,*.vdw,*.glox,*.gcsx,*.gqsx'
 
-" references
-"{
-    " https://realpython.com/vim-and-python-a-match-made-in-heaven/
-    " #ditch the mouse
-    " http://vimcasts.org/
-    " https://www.openvim.com/
-    " http://vimdoc.sourceforge.net/
-    " http://learnvimscriptthehardway.stevelosh.com/
-    " Plugin 'jistr/vim-nerdtree-tabs'
-    "
-    "https://crudfest.wordpress.com/2018/09/08/the-journey-begins/
-"}
 
-"https://github.com/vim/vim-win32-installer/releases
