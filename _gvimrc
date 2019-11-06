@@ -11,7 +11,6 @@
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
-    "Plug 'valloric/youcompleteme'          "code completion
     Plug 'vim-scripts/mru.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'simeji/winresizer'
@@ -25,6 +24,10 @@
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-repeat'
+    "Plug 'valloric/youcompleteme'          "code completion
+    Plug 'omnisharp/omnisharp-vim' "TODO
+    Plug 'davidhalter/jedi-vim' 
+
     "git diff shower
     Plug 'airblade/vim-gitgutter'
     "Plug 'vim-scripts/XML-Indent'
@@ -36,12 +39,16 @@
     "TODO: 
     " automaticall resize current window
     " autocomplte Valloric/YouCompletme
+    " install Plug 'w0rp/ale'
+    "Plug 'sukima/xmledit'
 
     "colorshcems
     Plug 'tomasr/molokai'
+    Plug 'tomasiser/vim-code-dark'         
+    Plug 'flrnprz/plastic.vim'
+    
     "Plug 'flazz/vim-colorschemes'
     "Plug 'sonph/onehalf'
-    "P7lug 'sukima/xmledit'
     call plug#end()
 "}
 
@@ -64,6 +71,11 @@
     set number nu                           " set line numbers
     set rnu                                 " set relative number
     set ignorecase                          " set ignore case
+    if &t_Co > 2 || has("gui_running")
+        
+      set hlsearch                          " switch on highlighting the last used search pattern.
+    endif
+
     set tabstop=4 shiftwidth=4 expandtab 
     " "Enabling this will make the tab key (in insert mode) insert spaces or tabs
     " "to go to the next indent of the next tabstop
@@ -95,7 +107,6 @@
 
 "}
 
-
 " GuiOptions
 "{
     set guioptions=c                       " use console dialogs
@@ -120,41 +131,43 @@
 
 "}
 
-" colorscheme_settings
+" Colorscheme_settings
 "{
     colorscheme molokai
+    " colorscheme codedark 
+ 
+    " "other schemes
+    " colorscheme plastic
+   "  colorscheme marslo
+    " colorscheme solarized
+    " colorscheme sunburst
+    " colorscheme kalisi
+    " colorscheme jellybeans
+    " colorscheme hybrid
+    " colorscheme solarized 
+    " colorscheme monokai
+    " colorscheme kolor
+    " colorscheme codedark 
+    " colorscheme molokai
+    " colorscheme elflord 
+    " let g:rehash256 = 1
+    " colorschem wombat256
+    
+    " let g:solarized_termcolors=256
 
-    " "followings are my favourits 
-    "colorscheme marslo
-    "colorscheme solarized
-    "colorscheme sunburst
-    "colorscheme kalisi
-    "colorscheme jellybeans
-    "colorscheme hybrid
-    "colorscheme solarized 
-    "colorscheme monokai
-    "colorscheme kolor
-    "colorscheme codedark 
-    "colorscheme molokai
-    "colorscheme elflord 
-    "let g:rehash256 = 1
-    "colorschem wombat256
-    "
-    "let g:solarized_termcolors=256
+    " let g:molokai_original = 1
+    " let g:rehash256 = 1
+    
+    " let s:likedColorS= "lucid"
+    " let s:likedColors  = "wombat256"
+    " let s:likedColors  = "xoria256"
 
-    "let g:molokai_original = 1
-    "let g:rehash256 = 1
-    "
-    "let s:likedColorS= "lucid"
-    "let s:likedColors  = "wombat256"
-    "let s:likedColors  = "xoria256"
-
-    "colorscheme monokai
-    "colorscheme Gruvbox 
-    "colorscheme wombat256  
-    "colorscheme onehalf 
-    "colorscheme xoria256
-    "colorscheme solarized
+    " colorscheme monokai
+    " colorscheme Gruvbox 
+    " colorscheme wombat256  
+    " colorscheme onehalf 
+    " colorscheme xoria256
+    " colorscheme solarized
 "}  
 
 "<< Status Line Settings >>
@@ -231,37 +244,6 @@
     " let g:syntastic_check_on_wq = 0
 "}
 
-" Plugin    : 'valloric/youcompleteme'       "code completion
-"{
-    "TODO: configure
-    "https://github.com/ycm-core/YouCompleteMe
-
-    " "autocomplete goes away when done with it
-    " let g:ycm_autoclose_preview_window_after_completion=1
-
-    " "mapping for go to defenition
-    " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-    "  One issue with the goto definition above is that VIM, by default, doesn’t know
-    " anything about virtualenv, 
-    " so you have to make VIM and YouCompleteMe aware of your virtualenv 
-    "python with virtualenv support
-    
-    " !TODO: gives an error 
-    " pyVirtualEnvSupport
-    "{
-        " py << EOF
-        " import os
-        " import sys
-        " if 'VIRTUAL_ENV' in os.environ:
-          " project_base_dir = os.environ['VIRTUAL_ENV']
-          " activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-          " execfile(activate_this, dict(__file__=activate_this))
-        " EOF
-    "}
-
-"}
-
 " Plugin    :   'vim-scripts/mru.vim'
 "{
     let MRU_Window_Height =8                        " set height 
@@ -276,7 +258,7 @@
 "}
 
 
-" Plugin : 'vim-airline/vim-airline'
+" Plugin    :   'vim-airline/vim-airline'
 "{
     " "Automatically displays all buffers when there's only one tab open.
     let g:airline#extensions#tabline#enabled = 1  
@@ -324,14 +306,13 @@
     endif
 "}
 
-
 " Pluggin   : 'mhinz/vim-signify'
 "{
     " "default updatetime 4000ms is not good for async update
     "set updatetime=100
 "}
 
-" Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin    : 'ctrlpvim/ctrlp.vim'
 "{
     " https://vimawesome.com/plugin/ctrlp-vim-everything-has-changed
     " Press <F5> to purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.
@@ -348,7 +329,7 @@
     
 "}
 
-" Plug 'tpope/vim-fugitive'
+" Plugin    : 'tpope/vim-fugitive'
 "{  // git wrapper so awesome,it should be illegal
     " :Gwrite   -> Stage the current file to the index
     " :Gread    -> Revert current file to last checked in version
@@ -368,6 +349,75 @@
     " :Gbrowse  -> open current file on the web
                 "#$:) this should be absolutely illeagal :) :)
     " :Git      -> for running any arbitary git command
+"}
+
+" Plugin    : 'valloric/youcompleteme'       "code completion
+"{
+    "TODO: configure
+    "https://github.com/ycm-core/YouCompleteMe
+
+    " "autocomplete goes away when done with it
+    " let g:ycm_autoclose_preview_window_after_completion=1
+
+    " "mapping for go to defenition
+    " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+    "  One issue with the goto definition above is that VIM, by default, doesn’t know
+    " anything about virtualenv, 
+    " so you have to make VIM and YouCompleteMe aware of your virtualenv 
+    "python with virtualenv support
+    
+    " !TODO: gives an error 
+    " pyVirtualEnvSupport
+    "{
+        " py << EOF
+        " import os
+        " import sys
+        " if 'VIRTUAL_ENV' in os.environ:
+          " project_base_dir = os.environ['VIRTUAL_ENV']
+          " activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+          " execfile(activate_this, dict(__file__=activate_this))
+        " EOF
+    "}
+
+"}
+
+" Plugin    : 'omnisharp/omnisharp-vim'
+"{
+    " set omnisharp_server path
+     let g:OmniSharp_server_path = 'C:\Users\m10528\vimfiles\omnisharp.http-win-x64\OmniSharp.exe'
+
+    " Use the HTTP version of OmniSharp-roslyn  : 0
+    " Use the stdio version of OmniSharp-roslyn : 1
+    let g:OmniSharp_server_stdio =  1
+
+    let g:OmniSharp_proc_debug = 1
+    let g:OmniSharp_loglevel = 'debug'
+"}
+
+" Plugin    : 'davidhalter/jedi-vim'
+"{
+    " "disable auto-initialization
+    " let g:jedi#auto_initialization = 0
+
+    " "set direction where the opens{left,right,top,bottom}
+    let g:jedi#use_splits_not_buffers = "left"
+
+    " ":disable popup on like str. 
+    " let g:jedi#popup_on_dot = 0
+
+    let g:jedi#goto_command = "<leader>d"
+    let g:jedi#goto_assignments_command = "<leader>g"
+    let g:jedi#goto_definitions_command = ""
+    let g:jedi#documentation_command = "K"
+    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#rename_command = "<leader>r"
+
+
+    " "if no need of completion, but all the other features:
+    " let g:jedi#completions_enabled = 0
+    
 "}
 
 " Plugin    : 'scrooloose/nerdcommenter'
@@ -586,6 +636,7 @@
     " http://learnvimscriptthehardway.stevelosh.com/
     " Plugin 'jistr/vim-nerdtree-tabs'
     " https://github.com/vim/vim-win32-installer/releases
+    " https://www.freecodecamp.org/news/vim-for-people-who-use-visual-studio-code/
 "}
 
 ""oldsettings
@@ -760,5 +811,4 @@
 "
 ""<< Excel>>
 ""let g:zipPlugin_ext = '*.zip,*.jar,*.xpi,*.ja,*.war,*.ear,*.celzip,*.oxt,*.kmz,*.wsz,*.xap,*.docx,*.docm,*.dotx,*.dotm,*.potx,*.potm,*.ppsx,*.ppsm,*.pptx,*.pptm,*.ppam,*.sldx,*.thmx,*.crtx,*.vdw,*.glox,*.gcsx,*.gqsx'
-
 
