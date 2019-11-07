@@ -16,40 +16,24 @@
     Plug 'vim-scripts/ZoomWin'
     Plug 'tmhedberg/SimpylFold'
     Plug 'godlygeek/tabular'
-    " Plug 'mhinz/vim-signify'
-
-    "display number of search matches & index of current match
     Plug 'google/vim-searchindex'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-repeat'         "TODO
+    Plug 'tpope/vim-repeat'         
+    "Plug 'mhinz/vim-signify'
     "Plug 'valloric/youcompleteme'          
-    Plug 'omnisharp/omnisharp-vim'  "TODO
+    Plug 'omnisharp/omnisharp-vim'  
     Plug 'davidhalter/jedi-vim' 
-
-    "git diff shower
-    "Plug 'vim-scripts/XML-Indent'
-    "Plug 'othree/xml.vim'
-
-    "CSV plugin
     Plug 'chrisbra/csv.vim'
-
-    "TODO: 
-    " automaticall resize current window
-    " autocomplte Valloric/YouCompletme
-    " install Plug 'w0rp/ale'
-    "Plug 'sukima/xmledit'
-    " number base converting
-    " hex,bin editing
-
+   
     "colorshcems
     Plug 'tomasr/molokai'
     Plug 'tomasiser/vim-code-dark'         
     Plug 'flrnprz/plastic.vim'
-    
     "Plug 'flazz/vim-colorschemes'
     "Plug 'sonph/onehalf'
+
     call plug#end()
 "}
 
@@ -275,11 +259,17 @@
 
 "}
 
-" Plugin  : 'simeji/winresizer'
+" Plugin    : 'simeji/winresizer'
 "{
     "let g:winresizer_vert_resize = 2
     "let g:winresizer_horiz_resize = 1
 "}
+
+" Plugin    : 'vim-scripts/ZoomWin'
+"{
+    "TODO : configure
+"}
+
 
 " Plugin    : 'tmhedberg/SimpylFold'
 "{
@@ -297,10 +287,9 @@
     endif
 "}
 
-" Pluggin   : 'mhinz/vim-signify'
+" Plugin    : 'google/vim-searchindex'
 "{
-    " "default updatetime 4000ms is not good for async update
-    "set updatetime=100
+    "display number of search matches & index of current match
 "}
 
 " Plugin    : 'ctrlpvim/ctrlp.vim'
@@ -359,6 +348,17 @@
     " :Gbrowse  -> open current file on the web
                 "#$:) this should be absolutely illeagal :) :)
     " :Git      -> for running any arbitary git command
+"}
+
+" Plugin    : 'tpope/vim-repeat'         
+" {
+    "TODO: configure
+" }
+
+" Pluggin   : 'mhinz/vim-signify'
+"{
+    " "default updatetime 4000ms is not good for async update
+    "set updatetime=100
 "}
 
 " Plugin    : 'valloric/youcompleteme'       "code completion
@@ -428,6 +428,11 @@
     " "if no need of completion, but all the other features:
     " let g:jedi#completions_enabled = 0
     
+"}
+
+" Plugin  : 'chrisbra/csv.vim'
+"{
+    " TODO :configure  
 "}
 
 " Plugin    : 'scrooloose/nerdcommenter'
@@ -646,6 +651,17 @@
     " Plugin 'jistr/vim-nerdtree-tabs'
     " https://github.com/vim/vim-win32-installer/releases
     " https://www.freecodecamp.org/news/vim-for-people-who-use-visual-studio-code/
+
+    "TODO
+    " automaticall resize current window
+    " autocomplte Valloric/YouCompletme
+    " install Plug 'w0rp/ale'
+    " Plug 'sukima/xmledit'
+    " number base converting
+    " hex,bin editing
+    " Plug 'vim-scripts/XML-Indent'
+    " Plug 'othree/xml.vim'
+
 "}
 
 ""oldsettings
