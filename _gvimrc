@@ -21,11 +21,11 @@
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-repeat'         
-    "Plug 'mhinz/vim-signify'
-    "Plug 'valloric/youcompleteme'          
-    Plug 'omnisharp/omnisharp-vim'  
-    Plug 'davidhalter/jedi-vim' 
+    Plug 'valloric/youcompleteme'          
+    " Plug 'omnisharp/omnisharp-vim'  
+    " Plug 'davidhalter/jedi-vim' 
     Plug 'chrisbra/csv.vim'
+    " Plug 'mhinz/vim-signify'
    
     "colorshcems
     Plug 'tomasr/molokai'
@@ -355,22 +355,29 @@
     "TODO: configure
 " }
 
-" Pluggin   : 'mhinz/vim-signify'
-"{
-    " "default updatetime 4000ms is not good for async update
-    "set updatetime=100
-"}
 
 " Plugin    : 'valloric/youcompleteme'       "code completion
 "{
     "TODO: configure
     "https://github.com/ycm-core/YouCompleteMe
+    "
+    "YCM obsoletes the following Vim plugins because it has all of their features plus extra:
+    " clang_complete
+    " AutoComplPop
+    " Supertab
+    " neocomplcache
+    "
+    " "both libclang and clangd enabled. 
+    " "clangd will be preferred by default 
+    " "clangd enabled     : 1
+    " "libclang preffered : 0
+    " let g:ycm_use_clangd = 0
 
     " "autocomplete goes away when done with it
-    " let g:ycm_autoclose_preview_window_after_completion=1
+    let g:ycm_autoclose_preview_window_after_completion=1
 
     " "mapping for go to defenition
-    " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
     "  One issue with the goto definition above is that VIM, by default, doesn’t know
     " anything about virtualenv, 
@@ -395,14 +402,14 @@
 " Plugin    : 'omnisharp/omnisharp-vim'
 "{
     " set omnisharp_server path
-     let g:OmniSharp_server_path = 'C:\Users\m10528\vimfiles\omnisharp.http-win-x64\OmniSharp.exe'
+     " let g:OmniSharp_server_path = 'C:\Users\m10528\vimfiles\omnisharp.http-win-x64\OmniSharp.exe'
 
     " Use the HTTP version of OmniSharp-roslyn  : 0
     " Use the stdio version of OmniSharp-roslyn : 1
-    let g:OmniSharp_server_stdio =  1
+    " let g:OmniSharp_server_stdio =  1
 
-    let g:OmniSharp_proc_debug = 1
-    let g:OmniSharp_loglevel = 'debug'
+    " let g:OmniSharp_proc_debug = 1
+    " let g:OmniSharp_loglevel = 'debug'
 "}
 
 " Plugin    : 'davidhalter/jedi-vim'
@@ -411,24 +418,31 @@
     " let g:jedi#auto_initialization = 0
 
     " "set direction where the opens{left,right,top,bottom}
-    let g:jedi#use_splits_not_buffers = "left"
+    "let g:jedi#use_splits_not_buffers = "left"
 
     " ":disable popup on like str. 
     " let g:jedi#popup_on_dot = 0
 
-    let g:jedi#goto_command = "<leader>d"
-    let g:jedi#goto_assignments_command = "<leader>g"
-    let g:jedi#goto_definitions_command = ""
-    let g:jedi#documentation_command = "K"
-    let g:jedi#usages_command = "<leader>n"
-    let g:jedi#completions_command = "<C-Space>"
-    let g:jedi#rename_command = "<leader>r"
+    " let g:jedi#goto_command = "<leader>d"
+    " let g:jedi#goto_assignments_command = "<leader>g"
+    " let g:jedi#goto_definitions_command = ""
+    " let g:jedi#documentation_command = "K"
+    " let g:jedi#usages_command = "<leader>n"
+    " let g:jedi#completions_command = "<C-Space>"
+    " let g:jedi#rename_command = "<leader>r"
 
 
     " "if no need of completion, but all the other features:
     " let g:jedi#completions_enabled = 0
     
 "}
+"
+" Pluggin   : 'mhinz/vim-signify'
+"{
+    " "default updatetime 4000ms is not good for async update
+    "set updatetime=100
+"}
+
 
 " Plugin  : 'chrisbra/csv.vim'
 "{
