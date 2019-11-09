@@ -118,7 +118,7 @@
  
         " "other schemes
         " colorscheme plastic
-       "  colorscheme marslo
+        " colorscheme marslo
         " colorscheme solarized
         " colorscheme sunburst
         " colorscheme kalisi
@@ -130,6 +130,7 @@
         " colorscheme codedark 
         " colorscheme molokai
         " colorscheme elflord 
+        "
         " let g:rehash256 = 1
         " colorschem wombat256
         
@@ -138,9 +139,9 @@
         " let g:molokai_original = 1
         " let g:rehash256 = 1
         
-        " let s:likedColorS= "lucid"
-        " let s:likedColors  = "wombat256"
-        " let s:likedColors  = "xoria256"
+        " let s:likedColorS = "lucid"
+        " let s:likedColors = "wombat256"
+        " let s:likedColors = "xoria256"
 
         " colorscheme monokai
         " colorscheme Gruvbox 
@@ -350,7 +351,6 @@
 " {
         "TODO: configure
 " }
-
 
 " Plugin    : 'valloric/youcompleteme'       "code completion
 " {
