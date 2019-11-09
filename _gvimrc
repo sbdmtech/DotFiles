@@ -151,7 +151,7 @@
         " colorscheme solarized
 " }  
 
-" myMappings
+" KeyMappings
 " {
         " source _gvimrc
         nnoremap <Leader>ss :so $MYGVIMRC<CR>
@@ -193,6 +193,33 @@
         ""map - <C-W>-
         ""endif
 
+        "invert selection  delete not working
+        "(R)eplace all
+        nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<left><left>
+
+        "replace left  
+        nnoremap <leader>11 :%s/\v(.*)(<C-r><C-w>)(.*)/\1/<left><left>
+
+        "replace right
+        nnoremap <leader>22 :%s/\v(.*)(<C-r><C-w>)(.*)/\2/<left><left>
+        "
+        "keep middle
+        nnoremap <leader>33 :%s/\v(.*)(<C-r><C->)(.*)/\3/<left><left>
+
+        "keep 1,2
+        nnoremap <leader>12 :%s/\v(.*)(<C-r><C-w>)(.*)/\1\2/<left><left>
+
+        "keep 2,3
+        nnoremap <leader>23 :%s/\v(.*)(<C-r><C-w>)(.*)/\2\3/<left><left>
+
+        nnoremap <leader>gd :g/<C-r><C-w>/d
+        " use g! or V for not macthing lines
+        nnoremap <leader>vd :v/<C-r><C-w>/d
+        "
+        " tab untab visual selected box
+        " vmap <Tab> >gv
+        " vmap <S-Tab> <gv
+        ":nnoremap <F5> :match StatusLineTerm /<C-R><C-W>/<CR>
 " }
 
 " Plugin    : 'scrooloose/nerdtree'
@@ -527,38 +554,6 @@
         ""[count]<leader>cu |NERDCommenterUncomment|
         ""
         ""Uncomments the selected line(s).
-" }
-
-" Mappings 
-" {
-           
-        "invert selection  delete not working
-        "(R)eplace all
-        nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<left><left>
-
-        "replace left  
-        nnoremap <leader>11 :%s/\v(.*)(<C-r><C-w>)(.*)/\1/<left><left>
-
-        "replace right
-        nnoremap <leader>22 :%s/\v(.*)(<C-r><C-w>)(.*)/\2/<left><left>
-        "
-        "keep middle
-        nnoremap <leader>33 :%s/\v(.*)(<C-r><C->)(.*)/\3/<left><left>
-
-        "keep 1,2
-        nnoremap <leader>12 :%s/\v(.*)(<C-r><C-w>)(.*)/\1\2/<left><left>
-
-        "keep 2,3
-        nnoremap <leader>23 :%s/\v(.*)(<C-r><C-w>)(.*)/\2\3/<left><left>
-
-        nnoremap <leader>gd :g/<C-r><C-w>/d
-        " use g! or V for not macthing lines
-        nnoremap <leader>vd :v/<C-r><C-w>/d
-        "
-        " tab untab visual selected box
-        " vmap <Tab> >gv
-        " vmap <S-Tab> <gv
-        ":nnoremap <F5> :match StatusLineTerm /<C-R><C-W>/<CR>
 " }
 
 " ProgLangSetting
