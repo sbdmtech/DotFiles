@@ -21,18 +21,19 @@
         Plug 'airblade/vim-gitgutter'
         Plug 'tpope/vim-fugitive'
         Plug 'tpope/vim-repeat'         
+        Plug 'chrisbra/csv.vim'
+        Plug 'vim-scripts/RltvNmbr.vim'
         Plug 'valloric/youcompleteme'          
         " Plug 'omnisharp/omnisharp-vim'  
         " Plug 'davidhalter/jedi-vim' 
         " Plug 'mhinz/vim-signify'
-        Plug 'chrisbra/csv.vim'
        
         "colorshcems
         Plug 'tomasr/molokai'
         Plug 'tomasiser/vim-code-dark'         
         Plug 'flrnprz/plastic.vim'
-        "Plug 'flazz/vim-colorschemes'
-        "Plug 'sonph/onehalf'
+        " Plug 'flazz/vim-colorschemes'
+        " Plug 'sonph/onehalf'
 
         call plug#end()
 " }
@@ -53,33 +54,30 @@
         set autoread                            " autodectect chages of files outside of vim
         set autoindent                          " auto indent on
         set smartindent                         " set smart indentation on
-        set number nu                           " set line numbers
-        set rnu                                 " set relative number
-        set ignorecase                          " set ignore case
-        if &t_Co > 2 || has("gui_running")
-          set hlsearch                          " switch on highlighting the last used search pattern.
-        endif
-
-        set tabstop=4 shiftwidth=4 expandtab 
-        " "Enabling this will make the tab key (in insert mode) insert spaces or tabs
-        " "to go to the next indent of the next tabstop
-        " "when the cursor is at the beginning of a line (i.e. the only preceding characters are whitespace).
-        set smarttab 
         set textwidth=79                        " set maximum text width can insert
         set background=dark                     " set background dark
         set mousehide                           " set mouse hide when typing 
         set noerrorbells                        " disable error bell noise
         set vb t_vb=                            " disable beep and flash 
+        set ignorecase                          " set ignore case
+        let mapleader =","                      " change map leader
+        if &t_Co > 2 || has("gui_running")
+          set hlsearch                          " switch on highlighting the last used search pattern.
+        endif
+        set tabstop=4 shiftwidth=4 expandtab 
+        set smarttab 
+        " "Enabling this will make the tab key (in insert mode) insert spaces or tabs
+        " "to go to the next indent of the next tabstop
+        " "when the cursor is at the beginning of a line (i.e. the only preceding characters are whitespace).
+        
         " set foldenable                        " enable foldability 
         " set foldmethod=syntax                 " foldmethod set to syntax
         "
-        "set nobackup
-        "set nowritebackup
-        set backupdir =C:\Users\m10528\VimTemp
-
-        ">>change map leader
-        let mapleader =","
-        "inoremap <CR><CR> <ESC>                " enter instead of ESC
+        set backupdir =C:\Users\m10528\VimTemp  " set backup dir
+        " set nobackup
+        " set nowritebackup
+        " inoremap <CR><CR> <ESC>                " enter instead of ESC
+        
         source $VIMRUNTIME/mswin.vim
         behave mswin
         
@@ -94,12 +92,13 @@
         set guioptions-=T                      " hide toolbar
         set guioptions+=r                      " righthand scrollbar is always present
         set guioptions+=L                      " for vsplits lefthand scrollbar is present
+        set number                             " set normal line numbering
 
         " "font settings
         if has('win32')
           " Windows用
-          set guifont=MS_Gothic:h10:cSHIFTJIS 
-          "set guifont=MS_Mincho:h12:cSHIFTJIS
+          " set guifont=MS_Gothic:h10:cSHIFTJIS 
+          set guifont=MS_Mincho:h10:cSHIFTJIS
 
         elseif has('x11')
           set guifont=inconsolata-g\ 9       
@@ -107,7 +106,7 @@
 
         set encoding=utf-8
         set langmenu=en_US.UTF-8              " sets the language of the menu (gvim)
-        " set encoding=cp1250                   " this recognize the ALT+J as e instead of ĂŁE
+        " set encoding=cp1250                 " this recognize the ALT+J as e instead of ĂŁE
 
 " }
 
@@ -193,28 +192,50 @@
         ""map - <C-W>-
         ""endif
 
-        "invert selection  delete not working
-        "(R)eplace all
-        nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<left><left>
+        ""copy to clip board mappings
+        "map <C-c> "+y<CR>
 
-        "replace left  
-        nnoremap <leader>11 :%s/\v(.*)(<C-r><C-w>)(.*)/\1/<left><left>
-
-        "replace right
-        nnoremap <leader>22 :%s/\v(.*)(<C-r><C-w>)(.*)/\2/<left><left>
+        "replace_whole_area
+        "{
         "
-        "keep middle
-        nnoremap <leader>33 :%s/\v(.*)(<C-r><C->)(.*)/\3/<left><left>
+            "invert selection  delete not working
+            "(R)eplace all
+            nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<left><left>
 
-        "keep 1,2
-        nnoremap <leader>12 :%s/\v(.*)(<C-r><C-w>)(.*)/\1\2/<left><left>
+            "replace left  
+            nnoremap <leader>11 :%s/\v(.*)(<C-r><C-w>)(.*)/\1/<left><left>
 
-        "keep 2,3
-        nnoremap <leader>23 :%s/\v(.*)(<C-r><C-w>)(.*)/\2\3/<left><left>
+            "replace right
+            nnoremap <leader>22 :%s/\v(.*)(<C-r><C-w>)(.*)/\2/<left><left>
+            "
+            "keep middle
+            nnoremap <leader>33 :%s/\v(.*)(<C-r><C->)(.*)/\3/<left><left>
 
-        nnoremap <leader>gd :g/<C-r><C-w>/d
-        " use g! or V for not macthing lines
-        nnoremap <leader>vd :v/<C-r><C-w>/d
+            "keep 1,2
+            nnoremap <leader>12 :%s/\v(.*)(<C-r><C-w>)(.*)/\1\2/<left><left>
+
+            "keep 2,3
+            nnoremap <leader>23 :%s/\v(.*)(<C-r><C-w>)(.*)/\2\3/<left><left>
+
+            nnoremap <leader>gd :g/<C-r><C-w>/d
+            " use g! or V for not macthing lines
+            nnoremap <leader>vd :v/<C-r><C-w>/d
+        "}
+
+        "replace_current_line
+        "{
+            " TODO: confirm
+            "
+            " delete right 
+            nnoremap <leader>sl :s/\v(.*)(<C-r><C-w>)(.*)/\1\2/<left><left>
+
+            " delete left
+            nnoremap <leader>sh :s/\v(.*)(<C-r><C-w>)(.*)/\2\3/<left><left>
+
+            " delete except selected 
+            nnoremap <leader>sk :s/\v(.*)(<C-r><C-w>)(.*)/\2/<left><left>
+
+        "}
         "
         " tab untab visual selected box
         " vmap <Tab> >gv
@@ -379,6 +400,18 @@
         "TODO: configure
 " }
 
+" Plugin  : 'chrisbra/csv.vim'
+" {
+        " TODO :configure  
+" }
+"
+" Plug 'vim-scripts/RltvNmbr.vim'
+" {
+        ":RltvNmbr command command turns relative line numbering on.
+
+        ":RltvNmbr! command turns relative line numbering off.
+" }
+
 " Plugin    : 'valloric/youcompleteme'       "code completion
 " {
         "TODO: configure
@@ -459,17 +492,11 @@
         " let g:jedi#completions_enabled = 0
         
 " }
-"
+
 " Pluggin   : 'mhinz/vim-signify'
 " {
         " "default updatetime 4000ms is not good for async update
         "set updatetime=100
-" }
-
-
-" Plugin  : 'chrisbra/csv.vim'
-" {
-        " TODO :configure  
 " }
 
 " Plugin    : 'scrooloose/nerdcommenter'
@@ -666,6 +693,7 @@
         " hex,bin editing
         " Plug 'vim-scripts/XML-Indent'
         " Plug 'othree/xml.vim'
+        " Zoom in Zoom out
 
 " }
 
@@ -738,8 +766,6 @@
 ""vnoremap <ê> :m '>+1<CR>gv=gv
 ""vnoremap <ë> :m '<-2<CR>gv=gv
 "
-""copy to clip board mappings
-"map <C-c> "+y<CR>
 
 "
 "">>Hide Menu Bar and Tool Bar
