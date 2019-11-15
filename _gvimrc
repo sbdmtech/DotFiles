@@ -97,8 +97,8 @@
         " "font settings
         if has('win32')
           " Windows用
-          " set guifont=MS_Gothic:h10:cSHIFTJIS 
-          set guifont=MS_Mincho:h10:cSHIFTJIS
+          set guifont=MS_Gothic:h10:cSHIFTJIS 
+          " set guifont=MS_Mincho:h10:cSHIFTJIS
 
         elseif has('x11')
           set guifont=inconsolata-g\ 9       
@@ -407,6 +407,7 @@
 "
 " Plug 'vim-scripts/RltvNmbr.vim'
 " {
+        "call RltvNmbr#RltvNmbrCtrl(1)
         ":RltvNmbr command command turns relative line numbering on.
 
         ":RltvNmbr! command turns relative line numbering off.
@@ -683,6 +684,7 @@
         " Plugin 'jistr/vim-nerdtree-tabs'
         " https://github.com/vim/vim-win32-installer/releases
         " https://www.freecodecamp.org/news/vim-for-people-who-use-visual-studio-code/
+        " https://shapeshed.com/vim-statuslines/
 
         "TODO
         " automaticall resize current window
