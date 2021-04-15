@@ -32,8 +32,18 @@
         Plug 'tomasr/molokai'
         Plug 'tomasiser/vim-code-dark'         
         Plug 'flrnprz/plastic.vim'
+        Plug 'morhetz/gruvbox'
+        Plug 'joshdick/onedark.vim'
+        Plug 'jonathanfilip/vim-lucius'
+        " Plug 'nanotech/jellybeans.vim'
+        Plug 'nanotech/jellybeans.vim'
+        Plug 'sonph/onehalf'
         " Plug 'flazz/vim-colorschemes'
-        " Plug 'sonph/onehalf'
+        "
+        " sql clients
+        Plug 'vim-scripts/dbext.vim'
+        "Plug 'tpope/vim-dadbod'
+        " Plug 'cosminadrianpopescu/vim-sql-workbench'
 
         call plug#end()
 " }
@@ -54,12 +64,16 @@
         set autoread                            " autodectect chages of files outside of vim
         set autoindent                          " auto indent on
         set smartindent                         " set smart indentation on
-        set textwidth=79                        " set maximum text width can insert
+        set textwidth=0                         " set maximum text width can insert
+        " set wrapmargin=0                      " wrap margin
         set background=dark                     " set background dark
         set mousehide                           " set mouse hide when typing 
         set noerrorbells                        " disable error bell noise
         set vb t_vb=                            " disable beep and flash 
-        set ignorecase                          " set ignore case
+        " set ignorecase                        " set ignore case
+        set nu
+        set rnu
+        set noic                                " set noignore case
         let mapleader =","                      " change map leader
         if &t_Co > 2 || has("gui_running")
           set hlsearch                          " switch on highlighting the last used search pattern.
@@ -72,11 +86,13 @@
         
         " set foldenable                        " enable foldability 
         " set foldmethod=syntax                 " foldmethod set to syntax
-        "
+        set nofoldenable                        " dont fold at startup  
+
         set backupdir =C:\Users\m10528\VimTemp  " set backup dir
+        cd E:\work\99.temp
         " set nobackup
         " set nowritebackup
-        " inoremap <CR><CR> <ESC>                " enter instead of ESC
+        " inoremap <CR><CR> <ESC>               " enter instead of ESC
         
         source $VIMRUNTIME/mswin.vim
         behave mswin
@@ -113,7 +129,9 @@
 " Colorscheme_settings
 " {
         colorscheme molokai
+        " colorscheme gruvbox 
         " colorscheme codedark 
+        " colorscheme kalisi
  
         " "other schemes
         " colorscheme plastic
@@ -131,7 +149,7 @@
         " colorscheme elflord 
         "
         " let g:rehash256 = 1
-        " colorschem wombat256
+        " colorscheme wombat256
         
         " let g:solarized_termcolors=256
 
@@ -148,6 +166,20 @@
         " colorscheme onehalf 
         " colorscheme xoria256
         " colorscheme solarized
+
+        " set Visual selection color
+        hi Visual  guifg=#000000 guibg=Orange gui=none
+        hi Insert  guifg=#000000 guibg=Yellow gui=none
+
+        " hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
+        " highlight Cursor guifg=Black guibg=Orange
+        highlight iCursor guifg=Black guibg=GreenYellow
+        highlight vCursor guifg=Black guibg=Orange
+        set guicursor=n-v-c:block-Cursor
+        set guicursor+=i:ver100-iCursor
+        set guicursor+=n-v-c:blinkon0
+        set guicursor+=i:blinkwait10
+
 " }  
 
 " KeyMappings
@@ -198,10 +230,38 @@
         "replace_whole_area
         "{
         "
-            "invert selection  delete not working
             "(R)eplace all
             nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<left><left>
 
+            "replace spaces with empty string
+            " nnoremap <leader>tts :%s/ //g<left><left>
+            " vnoremap <leader>tts :s/ //g<left><left>
+
+            "replace 	 with empty string
+            nnoremap <leader>tti :%s/	//g<left><left>
+            vnoremap <leader>tti :s/	//g<left><left>
+
+            "replace 	 with empty carriage return 
+            nnoremap <leader>ttr :%s/	/<CR>/g<left><left>
+            vnoremap <leader>ttr :s/	/<CR>/g<left><left>
+
+            "replace spaces with empty string
+            nnoremap <leader>tte :%s/ //g<left><left>
+            vnoremap <leader>tte :s/ //g<left><left>
+
+            "insert new line after , occurence 
+            nnoremap <leader>ttc :%s/,/,\r/g<left><left>
+            vnoremap <leader>ttc :s/,/,\r/g<left><left>
+
+            " replace endof line with DD 
+            nnoremap <leader>tt4 :%s/$/,/g<left><left>
+            vnoremap <leader>tt4 :s/$/,/g<left><left>
+
+            " replace first char in line with DD 
+            nnoremap <leader>tt6 :%s/^/DD/g<left><left>
+            vnoremap <leader>tt6 :s/^/DD/g<left><left>
+
+            
             "replace left  
             nnoremap <leader>11 :%s/\v(.*)(<C-r><C-w>)(.*)/\1/<left><left>
 
@@ -218,8 +278,21 @@
             nnoremap <leader>23 :%s/\v(.*)(<C-r><C-w>)(.*)/\2\3/<left><left>
 
             nnoremap <leader>gd :g/<C-r><C-w>/d
+            vnoremap <leader>gd :g/<C-r><C-w>/d
+
             " use g! or V for not macthing lines
             nnoremap <leader>vd :v/<C-r><C-w>/d
+            vnoremap <leader>vd :v/<C-r><C-w>/d
+
+             " delete empty lines
+            nnoremap <leader>gel :g/^$/d
+            vnoremap <leader>gel :g/^$/d
+
+            " concatenate lines between same line pattern
+            nnoremap <leader>tjk :%v/^<C-r><C-w>/-1j!
+            vnoremap <leader>tjk :v/^<C-r><C-w>/-1j!  
+
+
         "}
 
         "replace_current_line
@@ -247,7 +320,10 @@
 " {
         let g:NERDTreeIgnore        = ['\.o$', '\.a$', '\.so$', '\.so.*$', '\.dpkg$', '\.rpm$', '\.obj$', '\.exe$', '\.d$','\.swp$', '\.git$', '\~$']
 
-        " "auto open NERDTre with vim startup
+        " show bookmarks
+        let NERDTreeShowBookmarks =1 
+
+        " auto open NERDTre with vim startup
         " autocmd vimenter * NERDTree
         "let g:NERDTreeWinSize=20
         nmap <F7> :NERDTree<CR>
@@ -329,6 +405,17 @@
             vmap <Leader>ae :Tabularize /=<CR>
             nmap <Leader>a: :Tabularize /:\zs<CR>
             vmap <Leader>a: :Tabularize /:\zs<CR>
+            nmap <Leader>al :Tabularize /,<CR>
+            vmap <Leader>al :Tabularize /,<CR>
+            nmap <Leader>ac :Tabularize /\/\/<CR>
+            vmap <Leader>ac :Tabularize /\/\/<CR>
+            nmap <Leader>as :Tabularize / <CR>
+            vmap <Leader>as :Tabularize / <CR>
+            nmap <Leader>add :Tabularize /-- <CR>
+            vmap <Leader>add :Tabularize /-- <CR>
+            nmap <Leader>ai :Tabularize /	<CR>
+            vmap <Leader>ai :Tabularize /	<CR>
+
         endif
 " }
 
@@ -379,8 +466,8 @@
         " :Gread    -> Revert current file to last checked in version
         " :Gremove  -> Delete the current file and the corresponding Vim buffer
         " :Gmove    -> Rename the current file and the corresponding Vim buffer
-        " :Gstatus
-        " :Gcommit 
+        " :Gstatus  -> Display current status
+        " :Gcommit  ->  
         " :Gmerge
         " :Gpush
         " :Gfetch
@@ -402,7 +489,8 @@
 
 " Plugin  : 'chrisbra/csv.vim'
 " {
-        " TODO :configure  
+        map <leader>cd  :CSVDeleteColumn<CR>
+"
 " }
 "
 " Plug 'vim-scripts/RltvNmbr.vim'
@@ -415,8 +503,12 @@
 
 " Plugin    : 'valloric/youcompleteme'       "code completion
 " {
+        " won't load YouCompleteMe
+        "let g:loaded_youcompleteme = 0 
+
+        let g:enable_ycm_at_startup = 1
         "TODO: configure
-        "https://github.com/ycm-core/YouCompleteMe
+        "mr
         "
         "YCM obsoletes the following Vim plugins because it has all of their features plus extra:
         " clang_complete
@@ -453,6 +545,10 @@
               " execfile(activate_this, dict(__file__=activate_this))
             " EOF
         " }
+        "
+    let g:ycm_filetype_blacklist = {
+                                    \ 'csv': 1
+                                   \}
 
 " }
 
@@ -502,20 +598,20 @@
 
 " Plugin    : 'scrooloose/nerdcommenter'
 " {
-         " Add spaces after comment delimiters by default
+        " Add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1
 
         " Use compact syntax for prettified multi-line comments
-        "let g:NERDCompactSexyComs = 1
+        let g:NERDCompactSexyComs = 1
 
         " Align line-wise comment delimiters flush left instead of following code indentation
         "let g:NERDDefaultAlign = 'left'
 
         " Set a language to use its alternate delimiters by default
-        "let g:NERDAltDelims_java = 1
+        "let g:NERDAltDelims_java = 
 
         " Add your own custom formats or override the defaults
-        "let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+        let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/' } }
 
         " Allow commenting and inverting empty lines (useful when commenting a region)
         "let g:NERDCommentEmptyLines = 1
@@ -583,6 +679,73 @@
         ""
         ""Uncomments the selected line(s).
 " }
+
+" Plug 'vim-scripts/dbext.vim'
+" {
+" Connection Profiles
+" -----------------------------
+" You can create as many profiles as you like in your vimrc.  
+" Each profile specifies various connection information.  Each buffer can be connected to a different database. 
+" The plugin will automatically prompt the user for connection information.  
+" If you have defined profiles in your vimrc, for ease of use,  you can choose from a numbered list.
+
+" Adding connection profiles is the best way to use dbext, :h dbext.txt has lots of examples of different profiles for different databases.
+
+     let g:dbext_default_profile_PG= 'type=PGSQL:user=postgres:passwd=alpRuslPssdev0:host=localhost:port=15432:dbname=alpenr_db'
+     let g:dbext_default_profile = 'PG'
+
+     " <- Predefined favourite connection information >
+    let g:dbext_default_type = 'PGSQL'
+
+    " <       - Default user id >
+    let g:dbext_default_user = 'postgres'
+
+    " < - Default password >
+    let g:dbext_default_passwd ='alpRuslPssdev0' 
+
+    " < - Default database to connect to >
+    let g:dbext_default_dbname = 'alpenr_db'
+
+    " < - Default host the server is running on >
+    let g:dbext_default_host = '127.0.0.1'
+
+    " < - Default port to connect to >
+    let g:dbext_default_port = '15432'
+
+"     augroup dbextExtras
+        " autocmd!
+        " autocmd User dbextPreConnection :echo 'dbextPreConnection fired'
+        " autocmd User dbextPreConnection :DBSetOption 'dbname=alpenr_db'
+        " autocmd User dbextPreConnection :DBSetOption 'host=localhost'
+        " autocmd User dbextPreConnection :DBSetOption 'port=15432'
+        " autocmd User dbextPreConnection :DBSetOption 'type=PGSQL::user=postgres:passwd=alpRuslPssdev0'
+    " augroup END
+
+
+     " let g:dbext_default_profile_myASA = 'type=ASA:user=DBA:passwd=SQL'
+     " let g:dbext_default_profile_myASA = 'type=ASA:user=DBA:passwd=SQL'
+     " let g:dbext_default_profile_mySQLServer = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
+     " let g:dbext_default_profile_mySQL = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql'
+     " let g:dbext_default_profile_mySQL_DBI = 'type=DBI:user=root:passwd=whatever:driver=mysql:conn_parms=database=mysql;host=localhost'
+     " let g:dbext_default_profile_myORA = 'type=ORA:srvname=zzz42ga:user=john:passwd=whatever'
+
+" Assuming you work on many different projects, you can automatically have dbext choose the correct database connection profile by adding autocmds that use the filesystem path to choose the correct profile:
+
+     " augroup project1
+         " au!
+         " " Automatically choose the correct dbext profile
+         " autocmd BufRead */projectX/sql/* DBSetOption profile=myASA
+     " augroup end
+
+     " augroup project2
+         " au!
+         " " Automatically choose the correct dbext profile
+         " autocmd BufRead */projectY/* DBSetOption profile=myORA
+     " augroup end
+
+" Or from the menu or the maps created you can choose a profile at any time.    
+" }
+
 
 " ProgLangSetting
 " {
