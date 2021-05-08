@@ -23,10 +23,10 @@
         Plug 'tpope/vim-repeat'         
         Plug 'chrisbra/csv.vim'
         Plug 'vim-scripts/RltvNmbr.vim'
-        Plug 'valloric/youcompleteme'          
+        " Plug 'valloric/youcompleteme'          
         " Plug 'omnisharp/omnisharp-vim'  
-        " Plug 'davidhalter/jedi-vim' 
-        " Plug 'mhinz/vim-signify'
+        " Plug 'davidhalter/jedi-vim'            "awesome Python autocompletion with VIM
+        " Plug 'mhinz/vim-signify'               "show diff with style
        
         "colorshcems
         Plug 'tomasr/molokai'
@@ -43,7 +43,9 @@
         " sql clients
         Plug 'vim-scripts/dbext.vim'
         "Plug 'tpope/vim-dadbod'
-        " Plug 'cosminadrianpopescu/vim-sql-workbench'
+        "Plug 'cosminadrianpopescu/vim-sql-workbench'
+
+        Plug 'mbbill/fencview'                  " filetype encoding detect
 
         call plug#end()
 " }
@@ -88,8 +90,11 @@
         " set foldmethod=syntax                 " foldmethod set to syntax
         set nofoldenable                        " dont fold at startup  
 
+        " attempt to create the ~/.vim_backup each time you start vim. If it already exists,
+        " silent !mkdir $HOME/VimTemp > /dev/null 2>&1
+        " !mkdir $HOME\VimTemp  &2>  $HOME\vimrc_error.txt
         set backupdir =C:\Users\m10528\VimTemp  " set backup dir
-        cd E:\work\99.temp
+        "
         " set nobackup
         " set nowritebackup
         " inoremap <CR><CR> <ESC>               " enter instead of ESC
@@ -112,7 +117,7 @@
 
         " "font settings
         if has('win32')
-          " Windows用
+          " Windows逕ｨ
           set guifont=MS_Gothic:h10:cSHIFTJIS 
           " set guifont=MS_Mincho:h10:cSHIFTJIS
 
@@ -121,8 +126,9 @@
         endif
 
         set encoding=utf-8
+        set fileencodings=ucs-bom,sjis,utf-8,default
         set langmenu=en_US.UTF-8              " sets the language of the menu (gvim)
-        " set encoding=cp1250                 " this recognize the ALT+J as e instead of ĂŁE
+        " set encoding=cp1250                 " this recognize the ALT+J as e instead of ﾄで・
 
 " }
 
@@ -174,11 +180,13 @@
         " hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
         " highlight Cursor guifg=Black guibg=Orange
         highlight iCursor guifg=Black guibg=GreenYellow
-        highlight vCursor guifg=Black guibg=Orange
+        highlight vCursor guifg=Black guibg=Red
         set guicursor=n-v-c:block-Cursor
         set guicursor+=i:ver100-iCursor
         set guicursor+=n-v-c:blinkon0
         set guicursor+=i:blinkwait10
+
+        "test
 
 " }  
 
@@ -186,6 +194,9 @@
 " {
         " source _gvimrc
         nnoremap <Leader>ss :so $MYGVIMRC<CR>
+
+        " start current directorry
+        nnoremap <Leader>sd :!start .<CR>
 
         " "window movement mappings
         nnoremap <C-h> <C-w>h
@@ -261,7 +272,6 @@
             nnoremap <leader>tt6 :%s/^/DD/g<left><left>
             vnoremap <leader>tt6 :s/^/DD/g<left><left>
 
-            
             "replace left  
             nnoremap <leader>11 :%s/\v(.*)(<C-r><C-w>)(.*)/\1/<left><left>
 
@@ -291,7 +301,6 @@
             " concatenate lines between same line pattern
             nnoremap <leader>tjk :%v/^<C-r><C-w>/-1j!
             vnoremap <leader>tjk :v/^<C-r><C-w>/-1j!  
-
 
         "}
 
@@ -528,7 +537,7 @@
         " "mapping for go to defenition
         map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-        "  One issue with the goto definition above is that VIM, by default, doesn’t know
+        "  One issue with the goto definition above is that VIM, by default, doesn窶冲 know
         " anything about virtualenv, 
         " so you have to make VIM and YouCompleteMe aware of your virtualenv 
         "python with virtualenv support
@@ -746,6 +755,14 @@
 " Or from the menu or the maps created you can choose a profile at any time.    
 " }
 
+"Plugin 'mbbill/fencview'                  " filetype encoding detect
+"{
+    "you may try to guess the file encoding by :FencView comman 
+    " If you need fencview.vim to detect encoding of every file,
+    " set g:fencview_autodetect option to 1 in your vimrc. This will slightly impact loading time, so it is disabled by default.
+    let g:fencview_autodetect =0 
+"}
+
 
 " ProgLangSetting
 " {
@@ -786,7 +803,7 @@
         " }
 
         "lang_xml
-        " {
+        "{
             " pretyyFormattingXML
             " {
                 function! DoPrettyXML()
@@ -924,12 +941,12 @@
 "inoremap <A-k> <Esc>:m .-2<CR>==gi
 "vnoremap <A-j> :m '>+1<CR>gv=gv
 "
-""nnoremap <ê> :m .+1<CR>==
-""nnoremap <ë> :m .-2<CR>==
-""inoremap <ê> <Esc>:m .+1<CR>==gi
-""inoremap <ë> <Esc>:m .-2<CR>==gi
-""vnoremap <ê> :m '>+1<CR>gv=gv
-""vnoremap <ë> :m '<-2<CR>gv=gv
+""nnoremap <ﾃｪ> :m .+1<CR>==
+""nnoremap <ﾃｫ> :m .-2<CR>==
+""inoremap <ﾃｪ> <Esc>:m .+1<CR>==gi
+""inoremap <ﾃｫ> <Esc>:m .-2<CR>==gi
+""vnoremap <ﾃｪ> :m '>+1<CR>gv=gv
+""vnoremap <ﾃｫ> :m '<-2<CR>gv=gv
 "
 
 "
@@ -1038,4 +1055,5 @@
 "
 ""<< Excel>>
 ""let g:zipPlugin_ext = '*.zip,*.jar,*.xpi,*.ja,*.war,*.ear,*.celzip,*.oxt,*.kmz,*.wsz,*.xap,*.docx,*.docm,*.dotx,*.dotm,*.potx,*.potm,*.ppsx,*.ppsm,*.pptx,*.pptm,*.ppam,*.sldx,*.thmx,*.crtx,*.vdw,*.glox,*.gcsx,*.gqsx'
+
 
